@@ -43,7 +43,7 @@ app.all('*', function(req, res, next){
 
 // api baseURI is at /api/
 
-// API Routes 
+// API Routes
 
 // CREATE - http://appname.com/api/create (POST)
 // RETRIEVE 1 - http://appname.com/api/get/:id (GET)
@@ -71,7 +71,7 @@ app.use(function(req, res, next){
 	var jsonData = {
 		status: 'ERROR',
 		message: 'Sorry, we cannot find the requested URI'
-	}
+	};
 	// set status as 404 and respond with data
   res.status(404).send(jsonData);
 
