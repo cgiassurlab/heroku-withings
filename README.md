@@ -1,8 +1,11 @@
+<<<<<<< HEAD
 ## RESTful Node.js, MongoDb, Express.js, Heroku, Withings
+
 
 * Node.js: <http://nodejs.org/>
 * Express.js: <http://expressjs.com/>
 * Moongoose.js (for MongoDB interaction): <http://mongoosejs.com/>
+<<<<<<< HEAD
 * Heroku: <https://devcenter.heroku.com/categories/support>
 
 ### Getting started
@@ -147,7 +150,6 @@ The above are typically called API endpoints, and client applications interact w
 
 Routing is how your app handles these incoming HTTP requests: performing the appropriate action and responding back to the client.
 
-In node.js (using Express), this is done through executing a callback function. In human language:
 
 	when this request is received, perform this action, and respond back (usually with JSON).
 
@@ -167,30 +169,3 @@ For example:
 A nice part about the ExpressJS framework (and nodejs in general) is the NPM system. NPM stands for Node Package Manager, and it allows us to include helpful node packages (libraries) that we can use in our app.
 
 For example, open up package.json. You can see we are setting our dependent packages. When you run npm install, all of these dependencies will be installed in your node_modules folder.
-
-package.json
-
-	"dependencies": {
-	  "body-parser": "^1.10.1",
-	  "express": "^4.10.7",
-	  "geocoder": "^0.2.2",
-	  "method-override": "^2.3.1",
-	  "moment": "^2.9.0",
-	  "mongoose": "^3.8.21",
-	  "request": "^2.51.0"
-	}
-
-Dependencies are then declared in app.js like:
-
-	var express = require('express');
-	var http = require('http');
-	var path = require('path');
-	var mongoose = require('mongoose');
-	var bodyParser = require('body-parser');
-	var methodOverride = require('method-override');
-
-To add a new node package, do the following in terminal:
-
-	npm install --save nameOfPackage
-
-The --save flag will automatically include the package in package.json as a dependency.
