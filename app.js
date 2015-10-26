@@ -10,10 +10,17 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
+var config = require('config');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+
+
 // the ExpressJS App
 var app = express();
 
 // configuration of expressjs settings for the web server.
+
+
 
 // server port number
 app.set('port', process.env.PORT || 5000);
@@ -21,6 +28,10 @@ app.set('port', process.env.PORT || 5000);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride());
+
+app.use(cookieParser());
+app.use(session({secret: 'bigSecret'}));
+
 
 // connecting to database
 app.db = mongoose.connect(process.env.MONGOLAB_URI);
@@ -54,6 +65,9 @@ app.all('*', function(req, res, next){
 // ROUTES, logic is in routes/index.js
 
 var routes = require('./routes/index.js');
+
+//Withings
+var routes = require('./withings.js');
 
 // home route is not really an API route, but does respond back
 app.get('/', routes.index); // calls index function in /routes/index.js

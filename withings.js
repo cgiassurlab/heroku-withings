@@ -1,5 +1,5 @@
 
-
+/*
 var express = require('express');
 var config = require('config');
 var app = express();
@@ -10,13 +10,14 @@ var session = require('express-session');
 app.use(cookieParser());
 app.use(session({secret: 'bigSecret'}));
 app.listen(3000);
+*/
 
-
+var Withings = require('withings-lib');
 var appOauth = config.get('app.oauth');
 var gUserID = 0;
 
 // OAuth flow
-app.get('/', function (req, res) {
+app.get('/withings', function (req, res) {
     // Create an API client and start authentication via OAuth
 
 
@@ -43,7 +44,7 @@ app.get('/', function (req, res) {
 });
 
 // On return from the authorization
-app.get('/oauth_callback', function (req, res) {
+app.get('/withings/oauth_callback', function (req, res) {
     var verifier = req.query.oauth_verifier;
     var oauthSettings = req.session.oauth;
 
@@ -78,7 +79,7 @@ app.get('/oauth_callback', function (req, res) {
                 oauthSettings.accessToken = token;
                 oauthSettings.accessTokenSecret = secret;
 
-                res.redirect('/activity/weight');
+                res.redirect('/withings/activity/weight');
 
                 //res.json(token);
             }
@@ -87,7 +88,7 @@ app.get('/oauth_callback', function (req, res) {
 });
 
 // Display today's steps for a user
-app.get('/activity/steps', function (req, res) {
+app.get('/withings/activity/steps', function (req, res) {
     var options = {
         consumerKey: appOauth.CONSUMER_KEY,
         consumerSecret: appOauth.CONSUMER_SECRET,
@@ -111,7 +112,7 @@ app.get('/activity/steps', function (req, res) {
 
 
 // Display today's steps for a user
-app.get('/activity/weight', function (req, res) {
+app.get('/withings/activity/weight', function (req, res) {
     var options = {
         consumerKey: appOauth.CONSUMER_KEY,
         consumerSecret: appOauth.CONSUMER_SECRET,
