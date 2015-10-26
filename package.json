@@ -1,0 +1,28 @@
+{
+  "name": "crmnw",
+  "version": "0.0.1",
+  "main": "index.js",
+  "dependencies": {
+    "express": "latest",
+    "withings-lib": "latest",
+      "body-parser": "latest",
+      "geocoder": "latest",
+      "method-override": "latest",
+      "moment": "latest",
+      "mongoose": "latest",
+      "request": "latest"
+  },
+  "devDependencies": {
+    "config": "latest",
+    "cookie-parser": "latest",
+    "express-session": "latest"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "latest",
+    "npm": "latest"
+  },
+  "author": "mle"
+}
