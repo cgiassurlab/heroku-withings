@@ -1,16 +1,16 @@
 {
   "name": "crmnw",
-  "version": "0.0.1",
-  "main": "index.js",
+  "version": "0.0.2",
+  "main": "app.js",
   "dependencies": {
     "express": "latest",
     "withings-lib": "latest",
-      "body-parser": "latest",
-      "geocoder": "latest",
-      "method-override": "latest",
-      "moment": "latest",
-      "mongoose": "latest",
-      "request": "latest"
+    "body-parser": "latest",
+    "geocoder": "latest",
+    "method-override": "latest",
+    "moment": "latest",
+    "mongoose": "latest",
+    "request": "latest"
   },
   "devDependencies": {
     "config": "latest",
