@@ -23,7 +23,7 @@ var app = express();
 
 
 // server port number
-app.set('port', process.env.PORT || 5000);
+app.set('port', config.app.env.PORT || 5000);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -34,7 +34,7 @@ app.use(session({secret: 'bigSecret'}));
 
 
 // connecting to database
-app.db = mongoose.connect(process.env.MONGOLAB_URI);
+app.db = mongoose.connect(config.app.dbConfig.mongoDB_URI);
 console.log("connected to database");
 
 /**
@@ -66,8 +66,6 @@ app.all('*', function(req, res, next){
 
 var routes = require('./routes/index.js');
 
-//Withings
-var routes = require('./withings.js');
 
 // home route is not really an API route, but does respond back
 app.get('/', routes.index); // calls index function in /routes/index.js
@@ -90,6 +88,135 @@ app.use(function(req, res, next){
   res.status(404).send(jsonData);
 
 });
+
+
+
+var Withings = require('withings-lib');
+var appOauth = config.get('app.oauth');
+var gUserID = 0;
+
+// OAuth flow
+app.get('/withings', function (req, res) {
+    // Create an API client and start authentication via OAuth
+
+
+    var options = {
+        consumerKey: appOauth.CONSUMER_KEY,
+        consumerSecret: appOauth.CONSUMER_SECRET,
+        callbackUrl: appOauth.CALLBACK_URL
+    };
+    var client = new Withings(options);
+
+    client.getRequestToken(function (err, token, tokenSecret) {
+        if (err) {
+            // Throw error
+            return;
+        }
+
+        req.session.oauth = {
+            requestToken: token,
+            requestTokenSecret: tokenSecret
+        };
+
+        res.redirect(client.authorizeUrl(token, tokenSecret));
+    });
+});
+
+// On return from the authorization
+app.get('/withings/oauth_callback', function (req, res) {
+    var verifier = req.query.oauth_verifier;
+    var oauthSettings = req.session.oauth;
+
+    gUserID = req.query.userid;
+
+    console.log("req: "+gUserID);
+
+    var options = {
+        consumerKey: appOauth.CONSUMER_KEY,
+        consumerSecret: appOauth.CONSUMER_SECRET,
+        callbackUrl: appOauth.CALLBACK_URL,
+        userID: gUserID
+    };
+    var client = new Withings(options);
+
+    //return;
+    //res.simpleText(200, "Hello World!"+req.query.userid);
+   // res.send('<p>some html</p>');
+    //res.send(options);
+    //res.send(client);
+
+    if (true) {
+
+        // Request an access token
+        client.getAccessToken(oauthSettings.requestToken, oauthSettings.requestTokenSecret, verifier,
+            function (err, token, secret) {
+                if (err) {
+                    // Throw error
+                    return;
+                }
+
+                oauthSettings.accessToken = token;
+                oauthSettings.accessTokenSecret = secret;
+
+                res.redirect('/withings/activity/weight');
+
+                //res.json(token);
+            }
+        );
+    }
+});
+
+// Display today's steps for a user
+app.get('/withings/activity/steps', function (req, res) {
+    var options = {
+        consumerKey: appOauth.CONSUMER_KEY,
+        consumerSecret: appOauth.CONSUMER_SECRET,
+        accessToken: req.session.oauth.accessToken,
+        accessTokenSecret: req.session.oauth.accessTokenSecret,
+        userID: gUserID
+    };
+    var client = new Withings(options);
+
+    console.log("req 2 : "+gUserID);
+
+    client.getDailySteps(new Date(), function(err, data) {
+        if (err) {
+            res.send(err);
+        }
+        res.json(data);
+    });
+});
+
+
+
+
+// Display today's steps for a user
+app.get('/withings/activity/weight', function (req, res) {
+    var options = {
+        consumerKey: appOauth.CONSUMER_KEY,
+        consumerSecret: appOauth.CONSUMER_SECRET,
+        accessToken: req.session.oauth.accessToken,
+        accessTokenSecret: req.session.oauth.accessTokenSecret,
+        userID: gUserID
+    };
+    var client = new Withings(options);
+
+    console.log("req 2 : "+gUserID);
+
+    client.getWeightMeasures(new Date(2013, 5, 1), new Date(),function(err, data) {
+        if (err) {
+            res.send(err);
+        }
+        res.json(data);
+    });
+});
+
+
+
+
+
+
+
 
 // create NodeJS HTTP server using 'app'
 http.createServer(app).listen(app.get('port'), function(){

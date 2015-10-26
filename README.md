@@ -12,6 +12,30 @@
 
 **Dependenices:**
 
+
+mkdir config
+vi config/default.JSON
+{
+  // Customer module configs
+  "app": {
+    "oauth": {
+      "CONSUMER_KEY": "xxxx",
+      "CONSUMER_SECRET": "xxxx",
+      "CALLBACK_URL": "http://xxxxx/oauth_callback"
+    },
+    "dbConfig": {
+      "host": "localhost",
+      "port": 5984,
+      "dbName": "customers"
+    }
+  }
+}
+
+
+kpm install mongodb
+
+
+
 1) Download node.js if you have not already <http://nodejs.org/>. You can confirm that node is successfully installed on your machine by opening up Terminal and typing 'node'. If you don't get an error, it's installed! You can exit the node process with Ctrl+c.
 
 2) Download and install the Heroku Toolbelt <https://toolbelt.heroku.com>, this will give you Foreman and the Heroku CLI (command line interface).
