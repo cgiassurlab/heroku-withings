@@ -35,6 +35,8 @@ app.use(session({secret: 'bigSecret'}));
 
 // connecting to database
 app.db = mongoose.connect(config.app.dbConfig.mongoDB_URI);
+//ew Mongo('mongodb://USERNAME:PASSWORD@mongo1.db.koding.com/DBNAME')
+
 console.log("connected to database");
 
 /**
