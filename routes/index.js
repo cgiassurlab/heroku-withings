@@ -24,7 +24,7 @@ exports.index = function(req, res) {
 
 	var data = {
 		status: 'OK',
-		message: 'Welcome to the itpeeps-map v1 API'
+		message: 'Welcome to TOLVelocityApp'
 	};
 
 	// respond back with the data
