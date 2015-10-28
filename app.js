@@ -10,7 +10,8 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
-var config = require('config');
+//var config = require('config');
+//var config = require('load-env')
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
@@ -23,7 +24,7 @@ var app = express();
 
 
 // server port number
-app.set('port', config.app.env.PORT || 5000);
+app.set('port', process.env.PORT || 5000);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -34,7 +35,8 @@ app.use(session({secret: 'bigSecret'}));
 
 
 // connecting to database
-app.db = mongoose.connect(config.app.dbConfig.mongoDB_URI);
+//process.env
+app.db = mongoose.connect(process.env.MONGOLAB_URI);
 console.log("connected to database");
 
 /**
@@ -92,7 +94,7 @@ app.use(function(req, res, next){
 
 
 var Withings = require('withings-lib');
-var appOauth = config.get('app.oauth');
+var appOauth = {};//process.env.WITHINGS_OAUTH;//config.get('app.oauth');
 var gUserID = 0;
 
 // OAuth flow

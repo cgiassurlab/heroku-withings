@@ -3,20 +3,19 @@
   "version": "0.0.2",
   "main": "app.js",
   "dependencies": {
-    "express": "latest",
-    "withings-lib": "latest",
     "body-parser": "latest",
+    "config": "latest",
+    "cookie-parser": "latest",
+    "express": "latest",
+    "express-session": "latest",
     "geocoder": "latest",
     "method-override": "latest",
     "moment": "latest",
     "mongoose": "latest",
     "request": "latest",
-    "config": "latest",
-    "cookie-parser": "latest",
-    "express-session": "latest"
+    "withings-lib": "latest"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,5 +23,15 @@
     "node": "latest",
     "npm": "latest"
   },
-  "author": "mat"
+  "author": "mat",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matcgi/tol-velo.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matcgi/tol-velo/issues"
+  },
+  "homepage": "https://github.com/matcgi/tol-velo#readme"
 }
