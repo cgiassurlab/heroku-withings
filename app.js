@@ -10,10 +10,8 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
-var Withings = require('withings-lib');
-
 //var config = require('config');
-//var config = require('load-env')
+var config = require('load-env')
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
@@ -26,7 +24,7 @@ var app = express();
 
 
 // server port number
-app.set('port', process.env.PORT || 80);
+app.set('port', process.env.PORT || 5000);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -97,6 +95,8 @@ app.use(function(req, res, next){
 });
 
 
+
+var Withings = require('withings-lib');
 var appOauth = {};//process.env.WITHINGS_OAUTH;//config.get('app.oauth');
 var gUserID = 0;
 
@@ -105,19 +105,16 @@ app.get('/withings', function (req, res) {
     // Create an API client and start authentication via OAuth
 
 
-    console.log("Withings init");
     var options = {
-        consumerKey: process.env.WITHINGS_CONSUMER_KEY,
-        consumerSecret: process.env.WITHINGS_CONSUMER_SECRET,
-        callbackUrl: process.env.WITHINGS_CALLBACK_URL
+        consumerKey: appOauth.CONSUMER_KEY,
+        consumerSecret: appOauth.CONSUMER_SECRET,
+        callbackUrl: appOauth.CALLBACK_URL
     };
     var client = new Withings(options);
 
     client.getRequestToken(function (err, token, tokenSecret) {
-        console.log("Withings token init");
         if (err) {
             // Throw error
-            console.log("Withings error");
             return;
         }
 
@@ -140,9 +137,9 @@ app.get('/withings/oauth_callback', function (req, res) {
     console.log("req: "+gUserID);
 
     var options = {
-        consumerKey: process.env.WITHINGS_CONSUMER_KEY,
-        consumerSecret: process.env.WITHINGS_CONSUMER_SECRET,
-        callbackUrl: process.env.WITHINGS_CALLBACK_URL,
+        consumerKey: appOauth.CONSUMER_KEY,
+        consumerSecret: appOauth.CONSUMER_SECRET,
+        callbackUrl: appOauth.CALLBACK_URL,
         userID: gUserID
     };
     var client = new Withings(options);
@@ -177,8 +174,8 @@ app.get('/withings/oauth_callback', function (req, res) {
 // Display today's steps for a user
 app.get('/withings/activity/steps', function (req, res) {
     var options = {
-        consumerKey: process.env.WITHINGS_CONSUMER_KEY,
-        consumerSecret: process.env.WITHINGS_CONSUMER_SECRET,
+        consumerKey: appOauth.CONSUMER_KEY,
+        consumerSecret: appOauth.CONSUMER_SECRET,
         accessToken: req.session.oauth.accessToken,
         accessTokenSecret: req.session.oauth.accessTokenSecret,
         userID: gUserID
@@ -201,8 +198,8 @@ app.get('/withings/activity/steps', function (req, res) {
 // Display today's steps for a user
 app.get('/withings/activity/weight', function (req, res) {
     var options = {
-        consumerKey: process.env.WITHINGS_CONSUMER_KEY,
-        consumerSecret: process.env.WITHINGS_CONSUMER_SECRET,
+        consumerKey: appOauth.CONSUMER_KEY,
+        consumerSecret: appOauth.CONSUMER_SECRET,
         accessToken: req.session.oauth.accessToken,
         accessTokenSecret: req.session.oauth.accessTokenSecret,
         userID: gUserID

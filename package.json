@@ -13,7 +13,8 @@
     "moment": "latest",
     "mongoose": "latest",
     "request": "latest",
-    "withings-lib": "latest"
+    "withings-lib": "latest",
+    "load-env": "^1.3.6"
   },
   "devDependencies": {},
   "scripts": {
