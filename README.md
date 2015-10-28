@@ -1,11 +1,11 @@
-<<<<<<< HEAD
+
 ## RESTful Node.js, MongoDb, Express.js, Heroku, Withings
 
 
 * Node.js: <http://nodejs.org/>
 * Express.js: <http://expressjs.com/>
 * Moongoose.js (for MongoDB interaction): <http://mongoosejs.com/>
-<<<<<<< HEAD
+
 * Heroku: <https://devcenter.heroku.com/categories/support>
 
 ### Getting started
@@ -13,9 +13,9 @@
 **Dependenices:**
 
 
-mkdir config
-vi config/default.JSON
-{
+  mkdir config
+	vi config/default.JSON
+  {
   // Customer module configs
   "app": {
     "oauth": {
@@ -29,10 +29,10 @@ vi config/default.JSON
       "dbName": "customers"
     }
   }
-}
+  }
 
 
-kpm install mongodb
+  kpm install mongodb
 
 
 
