@@ -55,7 +55,7 @@ exports.create = function(req,res){
   	// if we get an error, or don't have any results, respond back with error
   	if (err || !data || data.status == 'ZERO_RESULTS'){
   		var jsonDataErr = {status:'ERROR', message: 'Error finding location'};
-  		res.json(jsonDataErr);
+  		return res.json(jsonDataErr);
   	}
 
   	// otherwise, save the user
