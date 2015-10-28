@@ -1,7 +1,7 @@
 
 /*
  * routes/index.js
- * 
+ *
  * Routes contains the functions (callbacks) associated with request urls.
  */
 
@@ -19,18 +19,18 @@ var Person = require("../models/model.js");
  */
 
 exports.index = function(req, res) {
-	
+
 	console.log("main route requested");
 
 	var data = {
 		status: 'OK',
 		message: 'Welcome to the itpeeps-map v1 API'
-	}
+	};
 
 	// respond back with the data
 	res.json(data);
 
-}
+};
 
 /**
  * POST '/api/create'
@@ -51,11 +51,11 @@ exports.create = function(req,res){
 	geocoder.geocode(location, function ( err, data ) {
 
 		console.log(data);
-  	
+
   	// if we get an error, or don't have any results, respond back with error
-  	if (err || data.status == 'ZERO_RESULTS'){
-  		var jsonData = {status:'ERROR', message: 'Error finding location'};
-  		res.json(jsonData);
+  	if (err || !data || data.status == 'ZERO_RESULTS'){
+  		var jsonDataErr = {status:'ERROR', message: 'Error finding location'};
+  		res.json(jsonDataErr);
   	}
 
   	// otherwise, save the user
@@ -63,7 +63,7 @@ exports.create = function(req,res){
 	  var locationName = data.results[0].formatted_address; // the location name
 	  var lon = data.results[0].geometry.location.lng;
 		var lat = data.results[0].geometry.location.lat;
-  	
+
   	// need to put the geo co-ordinates in a lng-lat array for saving
   	var lnglat_array = [lon,lat];
 
@@ -74,12 +74,12 @@ exports.create = function(req,res){
 	  });
 
 	  // now, save that person to the database
-		// mongoose method, see http://mongoosejs.com/docs/api.html#model_Model-save	  
+		// mongoose method, see http://mongoosejs.com/docs/api.html#model_Model-save
 	  person.save(function(err,data){
 	  	// if err saving, respond back with error
 	  	if (err){
-	  		var jsonData = {status:'ERROR', message: 'Error saving person'};
-	  		return res.json(jsonData);
+	  		var jsonDataErr = {status:'ERROR', message: 'Error saving person'};
+	  		return res.json(jsonDataErr);
 	  	}
 
 	  	console.log('saved a new person!');
@@ -89,14 +89,14 @@ exports.create = function(req,res){
 	  	var jsonData = {
 	  		status: 'OK',
 	  		person: data
-	  	}
+	  	};
 
 	  	return res.json(jsonData);
 
-	  })
+	  });
 
-	});		
-}
+	});
+};
 
 /**
  * GET '/api/get/:id'
@@ -112,22 +112,22 @@ exports.getOne = function(req,res){
 	// mongoose method, see http://mongoosejs.com/docs/api.html#model_Model.findById
 	Person.findById(requestedId, function(err,data){
 
-		// if err or no user found, respond with error 
-		if(err || data == null){
-  		var jsonData = {status:'ERROR', message: 'Could not find that person'};
-  		 return res.json(jsonData);
+		// if err or no user found, respond with error
+		if(err || data === null){
+  		var jsonDataErr = {status:'ERROR', message: 'Could not find that person'};
+  		 return res.json(jsonDataErr);
   	}
 
   	// otherwise respond with JSON data of the user
   	var jsonData = {
   		status: 'OK',
   		person: data
-  	}
+  	};
 
   	return res.json(jsonData);
-	
-	})
-}
+
+	});
+};
 
 /**
  * GET '/api/get'
@@ -139,24 +139,24 @@ exports.getAll = function(req,res){
 
 	// mongoose method, see http://mongoosejs.com/docs/api.html#model_Model.find
 	Person.find(function(err, data){
-		// if err or no users found, respond with error 
-		if(err || data == null){
-  		var jsonData = {status:'ERROR', message: 'Could not find people'};
-  		return res.json(jsonData);
+		// if err or no users found, respond with error
+		if(err || data === null){
+  		var jsonDataErr = {status:'ERROR', message: 'Could not find people'};
+  		return res.json(jsonDataErr);
   	}
 
-  	// otherwise, respond with the data	
+  	// otherwise, respond with the data
 
   	var jsonData = {
   		status: 'OK',
   		people: data
-  	}	
+  	};
 
   	res.json(jsonData);
 
-	})
+	});
 
-}
+};
 
 /**
  * POST '/api/update/:id'
@@ -178,11 +178,11 @@ exports.update = function(req,res){
 	geocoder.geocode(location, function ( err, data ) {
 
 		console.log(data);
-  	
+
   	// if we get an error, or don't have any results, respond back with error
   	if (err || data.status == 'ZERO_RESULTS'){
-  		var jsonData = {status:'ERROR', message: 'Error finding location'};
-  		res.json(jsonData);
+  		var jsonDataError = {status:'ERROR', message: 'Error finding location'};
+  		res.json(jsonDataError);
   	}
 
   	// otherwise, update the user
@@ -190,7 +190,7 @@ exports.update = function(req,res){
 	  var locationName = data.results[0].formatted_address; // the location name
 	  var lon = data.results[0].geometry.location.lng;
 		var lat = data.results[0].geometry.location.lat;
-  	
+
   	// need to put the geo co-ordinates in a lng-lat array for saving
   	var lnglat_array = [lon,lat];
 
@@ -201,12 +201,12 @@ exports.update = function(req,res){
 	  };
 
 	  // now, update that person
-		// mongoose method, see http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate  
+		// mongoose method, see http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate
 	  Person.findByIdAndUpdate(requestedId, dataToUpdate, function(err,data){
 	  	// if err saving, respond back with error
 	  	if (err){
-	  		var jsonData = {status:'ERROR', message: 'Error updating person'};
-	  		return res.json(jsonData);
+	  		var jsonDataErr = {status:'ERROR', message: 'Error updating person'};
+	  		return res.json(jsonDataErr);
 	  	}
 
 	  	console.log('updated the person!');
@@ -216,15 +216,15 @@ exports.update = function(req,res){
 	  	var jsonData = {
 	  		status: 'OK',
 	  		person: data
-	  	}
+	  	};
 
 	  	return res.json(jsonData);
 
-	  })
+	  });
 
 	});
 
-}
+};
 
 /**
  * GET '/api/delete/:id'
@@ -239,19 +239,19 @@ exports.remove = function(req,res){
 
 	// Mongoose method, http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove
 	Person.findByIdAndRemove(requestedId,function(err, data){
-		if(err || data == null){
-  		var jsonData = {status:'ERROR', message: 'Could not find that person to delete'};
-  		return res.json(jsonData);
+		if(err || data === null){
+  		var jsonDataErr = {status:'ERROR', message: 'Could not find that person to delete'};
+  		return res.json(jsonDataErr);
 		}
 
 		// otherwise, respond back with success
 		var jsonData = {
 			status: 'OK',
 			message: 'Successfully deleted id ' + requestedId
-		}
+		};
 
 		res.json(jsonData);
 
-	})
+	});
 
-}
+};
