@@ -82,17 +82,6 @@ app.get('/api/get', routes.getAll); // API retrieve all route and callback (see 
 app.post('/api/update/:id', routes.update); // API update route and callback (see /routes/index.js)
 app.get('/api/delete/:id', routes.remove); // API delete route and callback (see /routes/index.js)
 
-// if route not found, respond with 404
-app.use(function(req, res, next){
-
-	var jsonData = {
-		status: 'ERROR',
-		message: 'Sorry, we cannot find the requested URI'
-	};
-	// set status as 404 and respond with data
-  res.status(404).send(jsonData);
-
-});
 
 
 
@@ -217,9 +206,17 @@ app.get('/withings/activity/weight', function (req, res) {
 });
 
 
+// if route not found, respond with 404
+app.use(function(req, res, next){
 
+	var jsonData = {
+		status: 'ERROR',
+		message: 'Sorry, we cannot find the requested URI'
+	};
+	// set status as 404 and respond with data
+  res.status(404).send(jsonData);
 
-
+});
 
 
 
