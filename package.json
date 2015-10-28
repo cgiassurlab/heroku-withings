@@ -1,5 +1,5 @@
 {
-  "name": "crmnw",
+  "name": "tol-velo",
   "version": "0.0.2",
   "main": "app.js",
   "dependencies": {
@@ -10,12 +10,12 @@
     "method-override": "latest",
     "moment": "latest",
     "mongoose": "latest",
-    "request": "latest"
-  },
-  "devDependencies": {
+    "request": "latest",
     "config": "latest",
     "cookie-parser": "latest",
     "express-session": "latest"
+  },
+  "devDependencies": {
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
