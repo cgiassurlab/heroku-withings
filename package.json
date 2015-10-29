@@ -1,6 +1,6 @@
 {
-  "name": "tol-velo",
-  "version": "0.0.2",
+  "name": "tol-velo-server",
+  "version": "0.0.3",
   "main": "app.js",
   "dependencies": {
     "body-parser": "latest",
@@ -28,11 +28,11 @@
   "description": "",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matcgi/tol-velo.git"
+    "url": "git+https://github.com/matcgi/tol-velo-server.git"
   },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/matcgi/tol-velo/issues"
+    "url": "https://github.com/matcgi/tol-velo-server/issues"
   },
-  "homepage": "https://github.com/matcgi/tol-velo#readme"
+  "homepage": "https://github.com/matcgi/tol-vel-server#readme"
 }
