@@ -142,12 +142,12 @@ app.get('/withings/oauth_callback', function (req, res) {
     var client = new Withings(options);
 
     //return;
-    res.simpleText(200, "Hello World!"+req.query.userid);
-   // res.send('<p>some html</p>');
+    //res.simpleText(200, "Hello World!"+req.query.userid);
+    //res.send('<p>some html</p>');
     //res.send(options);
     //res.send(client);
 
-    if (false) {
+    if (true) {
 
         // Request an access token
         client.getAccessToken(oauthSettings.requestToken, oauthSettings.requestTokenSecret, verifier,
@@ -159,6 +159,8 @@ app.get('/withings/oauth_callback', function (req, res) {
 
                 oauthSettings.accessToken = token;
                 oauthSettings.accessTokenSecret = secret;
+
+                //TODO store userID, token + secret
 
                 res.redirect('/withings/activity/weight');
 
