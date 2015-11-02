@@ -99,17 +99,21 @@ app.get('/withings', function (req, res) {
 
 
     var options = {
-        consumerKey: appOauth.CONSUMER_KEY,
-        consumerSecret: appOauth.CONSUMER_SECRET,
-        callbackUrl: appOauth.CALLBACK_URL
+        consumerKey: process.env.CONSUMER_KEY,
+        consumerSecret: process.env.CONSUMER_SECRET,
+        callbackUrl: process.env.CALLBACK_URL
     };
     var client = new Withings(options);
+
+    console.log("withings : key:"+options.consumerKey+" secret:"+options.consumerSecret+" callback:"+options.callbackUrl);
 
     client.getRequestToken(function (err, token, tokenSecret) {
         if (err) {
             // Throw error
             return;
         }
+        
+        console.log("withings : token:"+token+" tokenSecret:"+tokenSecret);
 
         req.session.oauth = {
             requestToken: token,
@@ -130,9 +134,9 @@ app.get('/withings/oauth_callback', function (req, res) {
     console.log("req: "+gUserID);
 
     var options = {
-        consumerKey: appOauth.CONSUMER_KEY,
-        consumerSecret: appOauth.CONSUMER_SECRET,
-        callbackUrl: appOauth.CALLBACK_URL,
+        consumerKey: process.env.CONSUMER_KEY,
+        consumerSecret: process.env.CONSUMER_SECRET,
+        callbackUrl: process.env.CALLBACK_URL,
         userID: gUserID
     };
     var client = new Withings(options);
@@ -167,8 +171,8 @@ app.get('/withings/oauth_callback', function (req, res) {
 // Display today's steps for a user
 app.get('/withings/activity/steps', function (req, res) {
     var options = {
-        consumerKey: appOauth.CONSUMER_KEY,
-        consumerSecret: appOauth.CONSUMER_SECRET,
+        consumerKey: process.env.CONSUMER_KEY,
+        consumerSecret: process.env.CONSUMER_SECRET,
         accessToken: req.session.oauth.accessToken,
         accessTokenSecret: req.session.oauth.accessTokenSecret,
         userID: gUserID
@@ -191,8 +195,8 @@ app.get('/withings/activity/steps', function (req, res) {
 // Display today's steps for a user
 app.get('/withings/activity/weight', function (req, res) {
     var options = {
-        consumerKey: appOauth.CONSUMER_KEY,
-        consumerSecret: appOauth.CONSUMER_SECRET,
+        consumerKey: process.env.CONSUMER_KEY,
+        consumerSecret: process.env.CONSUMER_SECRET,
         accessToken: req.session.oauth.accessToken,
         accessTokenSecret: req.session.oauth.accessTokenSecret,
         userID: gUserID
