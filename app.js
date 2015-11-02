@@ -138,12 +138,12 @@ app.get('/withings/oauth_callback', function (req, res) {
     var client = new Withings(options);
 
     //return;
-    //res.simpleText(200, "Hello World!"+req.query.userid);
+    res.simpleText(200, "Hello World!"+req.query.userid);
    // res.send('<p>some html</p>');
     //res.send(options);
     //res.send(client);
 
-    if (true) {
+    if (false) {
 
         // Request an access token
         client.getAccessToken(oauthSettings.requestToken, oauthSettings.requestTokenSecret, verifier,
