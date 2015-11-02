@@ -1,0 +1,165 @@
+
+
+
+
+[Koding]
+
+//prerequ :
+//   github logged in
+//   heroku logged in
+github linked autodeploy
+
+
+
+cd Web
+git clone https://github.com/matcgi/tol-velo
+cd tol-velo
+
+git config --global user.email "mathieu.leprevost@cgi.com"
+git config --global user.name "matcgi"
+
+git init
+git add .
+git commit -m "[Koding] MLE first commit"
+
+
+wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+
+
+sudo npm install -g node-gyp
+
+heroku login
+
+//heroku create
+heroku git:remote -a tol-velocity
+
+// cf https://devcenter.heroku.com/articles/mongolab
+
+
+
+
+mkdir config
+vi config/default.json
+
+{
+    "app": {
+        "oauth": {
+            "CONSUMER_KEY": "xxxx",
+            "CONSUMER_SECRET": "xxxx",
+            "CALLBACK_URL": "http://xxxxx/oauth_callback"
+        },
+        "dbConfig": {
+            "host": "localhost",
+            "port": 5984,
+            "dbName": "customers"
+        },
+        "env": {
+            "PORT": "8080"
+        }
+    }
+}
+
+git add .
+git commit -m "[Koding] MLE second commit"
+
+git pull heroku master
+git push heroku master
+
+
+//kpm install mongodb
+//kpm install couchdb
+
+
+npm install
+node apps.js
+
+
+
+heroku logs --tail
+
+
+
+http://restlet.com/products/dhc/?utm_source=DHC
+ou CURL
+
+
+{
+	name: 'mat01',
+  location: 'Paris, FR'
+ }
+
+La base :  curl -X GET http://matcgi.koding.io:5984/tolvelocity
+La doc : http://docs.couchdb.org/en/1.6.1/intro/curl.html
+L’administration : http://matcgi.koding.io:5984/_utils/database.html?tolvelocity
+Si vous ne voyez rien, dites moi .. la VM est capricieuse c’est du Koding.com
+
+Supposons que mon app mobile "MaBUestTropRapide.com" ou TOL-velocity répondra ici :
+
+CREATE - https://tol-velocity.herokuapp.com/api/create (POST)
+RETRIEVE 1 - https://tol-velocity.herokuapp.com/api/get/:id (GET)
+RETRIEVE ALL - https://tol-velocity.herokuapp.com/api/get (GET)
+UPDATE - https://tol-velocity.herokuapp.com/api/update/:id (PUT)
+DELETE - https://tol-velocity.herokuapp.com/api/delete/:id (DELETE)
+Pour les données, partons sur {id,user,bu,velocity}
+
+Ya t il besoin d'aut
+
+https://tol-velo.herokuapp.com/api/create
+
+
+
+
+
+
+heroku config --shell | grep MONGOLAB_URI >> .env
+
+heroku config:set WITHINGS_CONSUMER_KEY=270257b2c01b7b50c29f0514f0659d1f5cc53db9cb6d6bee93332d7091fc8
+heroku config:set WITHINGS_CONSUMER_SECRET=6941171082bbebf173f5c033440dff7663db14b17c6eb2d47ce8270b06e5
+heroku config:set WITHINGS_CALLBACK_URL=http://tol-velo.herokuapp.com/withings/oauth_callback
+
+process.env.WITHINGS_CONSUMER_KEY,
+    consumerSecret: process.env.WITHINGS_CONSUMER_SECRET,
+    callbackUrl: process.env.WITHINGS_CALLBACK_URL,
+
+
+270257b2c01b7b50c29f0514f0659d1f5cc53db9cb6d6bee93332d7091fc8
+
+6941171082bbebf173f5c033440dff7663db14b17c6eb2d47ce8270b06e5
+
+
+
+Tester
+https://tol-velo.herokuapp.com/withings/
+
+
+
+
+
+
+kpm install couchdb
+To check that everything has worked, point your web browser to:
+
+http://matcgi.koding.io:5984/_utils/index.html
+From here you should verify your installation by pointing your web browser to:
+
+http://matcgi.koding.io:5984/_utils/verify_install.html
+
+relax ?!
+
+curl -X PUT http://matcgi.koding.io:5984/tol-velo
+//npm install -g fauxton
+
+sudo vi /etc/init.d/couchdb
+   su couchdb -c /usr/bin/couchdb
+
+
+sudo vi /etc/couchdb/local.ini
+
+[httpd]
+enable_cors = true
+
+[cors]
+origins = *
+
+
+CORS ??
