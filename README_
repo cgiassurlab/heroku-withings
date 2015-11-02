@@ -131,6 +131,8 @@ process.env.WITHINGS_CONSUMER_KEY,
 Tester
 https://tol-velo.herokuapp.com/withings/
 
+http://tol-velo.herokuapp.com/withings/activity/weight
+
 
 
 

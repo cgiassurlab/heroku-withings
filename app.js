@@ -11,7 +11,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
 //var config = require('config');
-var config = require('load-env')
+var config = require('load-env');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
@@ -73,18 +73,25 @@ app.all('*', function(req, res, next){
 
 // ROUTES, logic is in routes/index.js
 
-var routes = require('./routes/index.js');
+var routesMain = require('./routes/index.js');
+var routesPerson = require('./routes/person.js');
+var routesUser = require('./routes/user.js');
 
 
 // home route is not really an API route, but does respond back
-app.get('/', routes.index); // calls index function in /routes/index.js
+app.get('/', routesMain.index); // calls index function in /routes/index.js
 
 // API routes
-app.post('/api/create', routes.create); // API create route and callback (see /routes/index.js)
-app.get('/api/get/:id', routes.getOne); // API retrieve 1 route and callback (see /routes/index.js)
-app.get('/api/get', routes.getAll); // API retrieve all route and callback (see /routes/index.js)
-app.post('/api/update/:id', routes.update); // API update route and callback (see /routes/index.js)
-app.get('/api/delete/:id', routes.remove); // API delete route and callback (see /routes/index.js)
+app.post('/person/create', routesPerson.create);
+app.get('/person/get/:id', routesPerson.getOne);
+app.get('/person/get', routesPerson.getAll);
+app.post('/person/update/:id', routesPerson.update);
+app.get('/person/delete/:id', routesPerson.remove);
+app.post('/user/create', routesUser.create);
+app.get('/user/get/:id', routesUser.getOne);
+app.get('/user/get', routesUser.getAll);
+app.post('/user/update/:id', routesUser.update);
+app.get('/user/delete/:id', routesUser.remove);
 
 
 
@@ -130,6 +137,7 @@ app.get('/withings/oauth_callback', function (req, res) {
     var oauthSettings = req.session.oauth;
 
     gUserID = req.query.userid;
+    req.session.gUserID = gUserID;
 
     console.log("req: "+gUserID);
 
@@ -162,7 +170,37 @@ app.get('/withings/oauth_callback', function (req, res) {
 
                 //TODO store userID, token + secret
 
-                res.redirect('/withings/activity/weight');
+                	  var user = User({
+                	  	name: "createdByApp",
+                    	withingsToken : token,
+                    	withingsTokenSecret : secret,
+                    	withingsUserID : gUserID
+                    });
+
+                	  // now, save that person to the database
+                		// mongoose method, see http://mongoosejs.com/docs/api.html#model_Model-save
+                	  user.save(function(err,data){
+                	  	// if err saving, respond back with error
+                	  	if (err){
+                	  		var jsonDataErr = {status:'ERROR', message: 'Error saving user'};
+                	  		return res.json(jsonDataErr);
+                	  	}
+
+                	  	console.log('saved a new person!');
+                	  	console.log(data);
+
+                	  	// now return the json data of the new person
+                	  	var jsonData = {
+                	  		status: 'OK',
+                	  		person: data
+                	  	};
+
+
+                	  	//return res.json(jsonData);
+                      return res.redirect('/withings/activity/weight');
+
+                	  });
+
 
                 //res.json(token);
             }
@@ -172,6 +210,10 @@ app.get('/withings/oauth_callback', function (req, res) {
 
 // Display today's steps for a user
 app.get('/withings/activity/steps', function (req, res) {
+
+    if (!gUserID)
+      gUserID =req.session.gUserID;
+
     var options = {
         consumerKey: process.env.WITHINGS_CONSUMER_KEY,
         consumerSecret: process.env.WITHINGS_CONSUMER_SECRET,
@@ -196,6 +238,38 @@ app.get('/withings/activity/steps', function (req, res) {
 
 // Display today's steps for a user
 app.get('/withings/activity/weight', function (req, res) {
+
+
+    if (!gUserID)
+        if (req.session) gUserID =req.session.gUserID;
+
+    if (!req.session || !req.session.oauth || !gUserID) {
+      res.send("Please relog to your app.");
+      return;
+    }
+
+    /*
+    	// mongoose method, see http://mongoosejs.com/docs/api.html#model_Model.findById
+    	User.findById(requestedId, function(err,data){
+
+    		// if err or no user found, respond with error
+    		if(err || data === null){
+      		var jsonDataErr = {status:'ERROR', message: 'Could not find that person'};
+      		 return res.json(jsonDataErr);
+      	}
+
+      	// otherwise respond with JSON data of the user
+      	var jsonData = {
+      		status: 'OK',
+      		person: data
+      	};
+
+      	return res.json(jsonData);
+
+    	});
+
+      */
+
     var options = {
         consumerKey: process.env.WITHINGS_CONSUMER_KEY,
         consumerSecret: process.env.WITHINGS_CONSUMER_SECRET,
@@ -211,7 +285,48 @@ app.get('/withings/activity/weight', function (req, res) {
         if (err) {
             res.send(err);
         }
-        res.json(data);
+        //res.json(data);
+        var html = "";
+        html += "Weight : <ul>";
+        for (var i = 0; i < data.length; i++ ) {
+          var point = data[i];
+          html += "<li>"+point.weight+"</li>";
+        }
+        html += "</ul>";
+
+        html += "<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>";
+
+        html += "<script>";
+        html += "var data = {";
+        html += " labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],";
+        html += " datasets: [";
+        html += " {";
+        html += " label: 'My First dataset',";
+        html += " fillColor: 'rgba(220,220,220,0.2)',";
+        html += " strokeColor: 'rgba(220,220,220,1)',";
+        html += " pointColor: 'rgba(220,220,220,1)',";
+        html += " pointStrokeColor: '#fff',";
+        html += " pointHighlightFill: '#fff',";
+        html += " pointHighlightStroke: 'rgba(220,220,220,1)',";
+        html += " data: [65, 59, 80, 81, 56, 55, 40]";
+        html += " },";
+        html += " {";
+        html += " label: 'My Second dataset',";
+        html += " fillColor: 'rgba(151,187,205,0.2)',";
+        html += " strokeColor: 'rgba(151,187,205,1)',";
+        html += " pointColor: 'rgba(151,187,205,1)',";
+        html += " pointStrokeColor: '#fff',";
+        html += " pointHighlightFill: '#fff',";
+        html += " pointHighlightStroke: 'rgba(151,187,205,1)',";
+        html += " data: [28, 48, 40, 19, 86, 27, 90]";
+        html += " }";
+        html += " ]";
+        html += "};";
+
+        html += "var myLineChart = new Chart(ctx).Line(data, options);";
+        html += "</script>";
+
+        res.send(html);
     });
 });
 
