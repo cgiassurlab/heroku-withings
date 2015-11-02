@@ -99,9 +99,9 @@ app.get('/withings', function (req, res) {
 
 
     var options = {
-        consumerKey: process.env.CONSUMER_KEY,
-        consumerSecret: process.env.CONSUMER_SECRET,
-        callbackUrl: process.env.CALLBACK_URL
+        consumerKey: process.env.WITHINGS_CONSUMER_KEY,
+        consumerSecret: process.env.WITHINGS_CONSUMER_SECRET,
+        callbackUrl: process.env.WITHINGS_CALLBACK_URL
     };
     var client = new Withings(options);
 
@@ -112,7 +112,7 @@ app.get('/withings', function (req, res) {
             // Throw error
             return;
         }
-        
+
         console.log("withings : token:"+token+" tokenSecret:"+tokenSecret);
 
         req.session.oauth = {
@@ -134,9 +134,9 @@ app.get('/withings/oauth_callback', function (req, res) {
     console.log("req: "+gUserID);
 
     var options = {
-        consumerKey: process.env.CONSUMER_KEY,
-        consumerSecret: process.env.CONSUMER_SECRET,
-        callbackUrl: process.env.CALLBACK_URL,
+        consumerKey: process.env.WITHINGS_CONSUMER_KEY,
+        consumerSecret: process.env.WITHINGS_CONSUMER_SECRET,
+        callbackUrl: process.env.WITHINGS_CALLBACK_URL,
         userID: gUserID
     };
     var client = new Withings(options);
@@ -171,8 +171,8 @@ app.get('/withings/oauth_callback', function (req, res) {
 // Display today's steps for a user
 app.get('/withings/activity/steps', function (req, res) {
     var options = {
-        consumerKey: process.env.CONSUMER_KEY,
-        consumerSecret: process.env.CONSUMER_SECRET,
+        consumerKey: process.env.WITHINGS_CONSUMER_KEY,
+        consumerSecret: process.env.WITHINGS_CONSUMER_SECRET,
         accessToken: req.session.oauth.accessToken,
         accessTokenSecret: req.session.oauth.accessTokenSecret,
         userID: gUserID
@@ -195,8 +195,8 @@ app.get('/withings/activity/steps', function (req, res) {
 // Display today's steps for a user
 app.get('/withings/activity/weight', function (req, res) {
     var options = {
-        consumerKey: process.env.CONSUMER_KEY,
-        consumerSecret: process.env.CONSUMER_SECRET,
+        consumerKey: process.env.WITHINGS_CONSUMER_KEY,
+        consumerSecret: process.env.WITHINGS_CONSUMER_SECRET,
         accessToken: req.session.oauth.accessToken,
         accessTokenSecret: req.session.oauth.accessTokenSecret,
         userID: gUserID
