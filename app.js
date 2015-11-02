@@ -17,7 +17,7 @@ var session = require('express-session');
 
 
 // our db model
-var Models = require("../models/model.js");
+var Models = require("models/model.js");
 var User = Models.user;
 var Person = Models.person;
 
