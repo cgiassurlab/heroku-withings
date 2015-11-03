@@ -117,6 +117,11 @@ heroku config:set WITHINGS_CONSUMER_KEY=270257b2c01b7b50c29f0514f0659d1f5cc53db9
 heroku config:set WITHINGS_CONSUMER_SECRET=6941171082bbebf173f5c033440dff7663db14b17c6eb2d47ce8270b06e5
 heroku config:set WITHINGS_CALLBACK_URL=http://tol-velo.herokuapp.com/withings/oauth_callback
 
+
+echo WITHINGS_CONSUMER_KEY=270257b2c01b7b50c29f0514f0659d1f5cc53db9cb6d6bee93332d7091fc8
+heroku config:set WITHINGS_CONSUMER_SECRET=6941171082bbebf173f5c033440dff7663db14b17c6eb2d47ce8270b06e5
+heroku config:set WITHINGS_CALLBACK_URL=http://tol-velo.herokuapp.com/withings/oauth_callback
+
 process.env.WITHINGS_CONSUMER_KEY,
     consumerSecret: process.env.WITHINGS_CONSUMER_SECRET,
     callbackUrl: process.env.WITHINGS_CALLBACK_URL,

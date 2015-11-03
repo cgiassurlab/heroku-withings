@@ -11,10 +11,10 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
 //var config = require('config');
-var config = require('load-env');
+//var config = require('load-env');
+require('dotenv').load();
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-
 
 // our db model
 var Models = require("models/model.js");
@@ -23,6 +23,8 @@ var Person = Models.person;
 
 // the ExpressJS App
 var app = express();
+
+
 
 // configuration of expressjs settings for the web server.
 
@@ -37,6 +39,23 @@ app.use(methodOverride());
 
 app.use(cookieParser());
 app.use(session({secret: 'bigSecret'}));
+
+
+app.set('views', __dirname + '/views');
+//app.use(express.static(path.join(__dirname, 'public')));
+
+
+// Routes
+
+var routePartials = function (req, res) {
+  var name = req.params.name;
+  res.render('partials/' + name);
+};
+//app.get('/', routes.index);
+app.get('/html/:name', routesPartials);
+
+
+
 
 
 // connecting to database
