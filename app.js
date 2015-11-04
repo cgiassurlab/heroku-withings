@@ -12,12 +12,14 @@ var methodOverride = require('method-override');
 
 //var config = require('config');
 //var config = require('load-env');
-require('dotenv').load();
+require('dotenv')
+.config({silent: true})
+.load();
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
 // our db model
-var Models = require("models/model.js");
+var Models = require("./models/model.js");
 var User = Models.user;
 var Person = Models.person;
 
