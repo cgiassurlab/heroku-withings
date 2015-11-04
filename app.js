@@ -12,9 +12,10 @@ var methodOverride = require('method-override');
 
 //var config = require('config');
 //var config = require('load-env');
-require('dotenv')
-.config({silent: true})
-.load();
+var dotenv = require('dotenv');
+dotenv.config({silent: true});
+dotenv.load();
+
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
