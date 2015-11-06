@@ -34,7 +34,7 @@ var app = express();
 
 
 // server port number
-app.set('port', process.env.PORT || 5000);
+app.set('port', process.env.PORT || 8080);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -52,10 +52,12 @@ app.set('views', __dirname + '/views');
 
 var routePartials = function (req, res) {
   var name = req.params.name;
-  res.render('partials/' + name);
+  //res.render('html/' + name +".html");
+    console.log("dir:"+__dirname + '/html/weight.html');
+     res.sendFile(__dirname + '/html/weight.html');
 };
 //app.get('/', routes.index);
-app.get('/html/:name', routesPartials);
+app.get('/html/:name', routePartials);
 
 
 

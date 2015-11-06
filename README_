@@ -140,6 +140,11 @@ http://tol-velo.herokuapp.com/withings/activity/weight
 
 
 
+avec koding
+http://matcgi.koding.io:8080/person/get
+{"status":"OK","people":[{"_id":"5630ed0039af570300bc0f6d","name":"mat01","locationName":"Paris, France","__v":0,"dateAdded":"2015-10-28T15:42:56.524Z","locationGeo":[2.3522219,48.856614]},{"_id":"5630edd739af570300bc0f6e","name":"mat01","locationName":"Paris, France","__v":0,"dateAdded":"2015-10-28T15:46:31.865Z","locationGeo":[2.3522219,48.856614]}]}
+
+http://matcgi.koding.io:8080/html/weight  ??
 
 
 
