@@ -53,8 +53,9 @@ app.set('views', __dirname + '/views');
 var routePartials = function (req, res) {
   var name = req.params.name;
   //res.render('html/' + name +".html");
-    console.log("dir:"+__dirname + '/html/weight.html');
-     res.sendFile(__dirname + '/html/weight.html');
+  var fileUrl = __dirname + '/html/'+name+'.html';
+    console.log("dir:"+fileUrl);
+     res.sendFile(fileUrl);
 };
 //app.get('/', routes.index);
 app.get('/html/:name', routePartials);
