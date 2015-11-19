@@ -269,6 +269,18 @@ app.get('/withings/activity/steps', function (req, res) {
 // Display today's steps for a user
 app.get('/withings/activity/weight', function (req, res) {
 	res.sendFile(path.join(__dirname + '/weight.html'));
+	var buyerData = {
+			labels : ["January","February","March","April","May","June"],
+			datasets : [
+			{
+				fillColor : "rgba(172,194,132,0.4)",
+				strokeColor : "#ACC26D",
+				pointColor : "#fff",
+				pointStrokeColor : "#9DB86D",
+				data : [203,156,99,251,305,247]
+			}
+			]
+	}
 
     if (!gUserID)
         if (req.session) gUserID =req.session.gUserID;
@@ -323,18 +335,7 @@ app.get('/withings/activity/weight', function (req, res) {
 		  var result = JSON.stringify(point.measures[0].value*0.01)
           html += "<li>"+JSON.stringify(point.measures[0].value*0.01)+"</li>";
         }
-		var buyerData = {
-			labels : ["January","February","March","April","May","June"],
-			datasets : [
-			{
-				fillColor : "rgba(172,194,132,0.4)",
-				strokeColor : "#ACC26D",
-				pointColor : "#fff",
-				pointStrokeColor : "#9DB86D",
-				data : [203,156,99,251,305,247]
-			}
-			]
-		}
+		
 
 	var buyers = document.getElementById('buyers').getContext('2d');
     new Chart(buyers).Line(buyerData);
