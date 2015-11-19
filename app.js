@@ -323,6 +323,7 @@ app.get('/withings/activity/weight', function (req, res) {
 		  var result = JSON.stringify(point.measures[0].value*0.01)
           html += "<li>"+JSON.stringify(point.measures[0].value*0.01)+"</li>";
         }
+		var html = "";
         html += "</ul>";
 
         html += "<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>";
@@ -357,8 +358,8 @@ app.get('/withings/activity/weight', function (req, res) {
         html += "var myLineChart = new Chart(ctx).Line(data, options);";
         html += "</script>";
 
-        //res.send(html);
-		res.sendFile('weight.html');
+        res.send(html);
+		
     });
 });
 
