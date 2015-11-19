@@ -34,35 +34,46 @@
     </div>
   
   
-    <canvas id="chartContainer" width="400" height="400"></canvas>
+    <div class="container">
+       		<div id="graphique">
+						<div class="cont">
+							<div>
+								<table>
+									<tr>	
+										<td class="graph">     
+											<canvas id="ok" height="75" width="75"></canvas>
+										    <p> Congés</p>
+										    <br>
+										</td>
+										
+								    </tr> 
+								</table>
+							</div>
+						</div>
+		</div>
   
       
   </div>
   
   <script>
 
-var data = {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
-    datasets: [
-        {
-            label: "My First dataset",
-            fillColor: "rgba(220,220,220,0.2)",
-            strokeColor: "rgba(220,220,220,1)",
-            pointColor: "rgba(220,220,220,1)",
-            pointStrokeColor: "#fff",
-            pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(220,220,220,1)",
-            data: JSON.stringify(point.measures[0].value*0.01)
-        }
-        
-    ]
-};
-
-// Get the context of the canvas element we want to select
-//var element = document.getElementById("chartContainer");
-var ctx = element.getContext("2d");
-var myLineChart = new Chart(ctx).Line(data);
-
+		var ok = [
+			{ value: 30,
+			    color:"#C00000"
+			},
+			{ value : 70,
+			    color : "#f2f2f2"
+			}
+		];
+			
+	    
+	
+	
+		var myHTMLdoughnut = new Chart(htmlDoughnut).Doughnut(ok, {
+		    percentageInnerCutout : 70
+		});
+			
+		
   </script>
 
 </body>
