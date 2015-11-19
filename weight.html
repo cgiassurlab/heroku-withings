@@ -41,6 +41,7 @@
   </div>
   
   <script>
+  client.getWeightMeasures(new Date(2013, 5, 1), new Date(),function(err, data) {
     for (var i = 0; i < data.length; i++ ) {
 	var point = data[i];
 	var result = JSON.stringify(point.measures[0].value*0.01)
@@ -60,6 +61,7 @@
 
 	var buyers = document.getElementById('buyers').getContext('2d');
     new Chart(buyers).Line(buyerData);
+	}
 
   </script>
 
