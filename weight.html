@@ -41,10 +41,8 @@
   </div>
   
   <script>
-  client.getWeightMeasures(new Date(2013, 5, 1), new Date(),function(err, data) {
-    for (var i = 0; i < data.length; i++ ) {
-	var point = data[i];
-	var result = JSON.stringify(point.measures[0].value*0.01)
+  
+    
 	}
 	var buyerData = {
 	labels : ["1","2","3","4"],
@@ -54,7 +52,7 @@
 			strokeColor : "#ACC26D",
 			pointColor : "#fff",
 			pointStrokeColor : "#9DB86D",
-			data : result
+			data : [45, 46, 47]
 		}
 	]
 }
