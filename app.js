@@ -357,7 +357,7 @@ app.get('/withings/activity/weight', function (req, res) {
         html += "var myLineChart = new Chart(ctx).Line(data, options);";
         html += "</script>";
 
-        res.send(html);
+        //res.send(html);
 		res.sendFile('weight.html');
     });
 });
