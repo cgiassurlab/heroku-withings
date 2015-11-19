@@ -269,18 +269,7 @@ app.get('/withings/activity/steps', function (req, res) {
 // Display today's steps for a user
 app.get('/withings/activity/weight', function (req, res) {
 	res.sendFile(path.join(__dirname + '/weight.html'));
-	var buyerData = {
-			labels : ["January","February","March","April","May","June"],
-			datasets : [
-			{
-				fillColor : "rgba(172,194,132,0.4)",
-				strokeColor : "#ACC26D",
-				pointColor : "#fff",
-				pointStrokeColor : "#9DB86D",
-				data : [203,156,99,251,305,247]
-			}
-			]
-	}
+	
 
     if (!gUserID)
         if (req.session) gUserID =req.session.gUserID;
