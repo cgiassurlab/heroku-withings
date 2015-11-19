@@ -327,8 +327,6 @@ app.get('/withings/activity/weight', function (req, res) {
         }
 		
 
-	var buyers = document.getElementById('buyers').getContext('2d');
-    new Chart(buyers).Line(buyerData);
 
 		
         html += "</ul>";
