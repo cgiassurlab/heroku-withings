@@ -34,46 +34,28 @@
     </div>
   
   
-    <div class="container">
-       		<div id="graphique">
-						<div class="cont">
-							<div>
-								<table>
-									<tr>	
-										<td class="graph">     
-											<canvas id="ok" height="75" width="75"></canvas>
-										    <p> Congés</p>
-										    <br>
-										</td>
-										
-								    </tr> 
-								</table>
-							</div>
-						</div>
-		</div>
+    <canvas id="chartContainer" width="400" height="400"></canvas>
   
       
   </div>
   
   <script>
+	var buyerData = {
+	labels : ["January","February","March","April","May","June"],
+	datasets : [
+		{
+			fillColor : "rgba(172,194,132,0.4)",
+			strokeColor : "#ACC26D",
+			pointColor : "#fff",
+			pointStrokeColor : "#9DB86D",
+			data : [203,156,99,251,305,247]
+		}
+	]
+}
 
-		var ok = [
-			{ value: 30,
-			    color:"#C00000"
-			},
-			{ value : 70,
-			    color : "#f2f2f2"
-			}
-		];
-			
-	    
-	
-	
-		var myHTMLdoughnut = new Chart(htmlDoughnut).Doughnut(ok, {
-		    percentageInnerCutout : 70
-		});
-			
-		
+	var buyers = document.getElementById('buyers').getContext('2d');
+    new Chart(buyers).Line(buyerData);
+
   </script>
 
 </body>
