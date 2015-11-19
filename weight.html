@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
-<script src="app.js"></script>
 
 </head>
 <body>
@@ -41,9 +40,6 @@
   </div>
   
   <script>
-  
-    
-	}
 	var buyerData = {
 	labels : ["1","2","3","4"],
 	datasets : [
@@ -52,14 +48,13 @@
 			strokeColor : "#ACC26D",
 			pointColor : "#fff",
 			pointStrokeColor : "#9DB86D",
-			data : [45, 46, 47]
+			data : [45, 47, 76]
 		}
 	]
 }
 
 	var buyers = document.getElementById('buyers').getContext('2d');
     new Chart(buyers).Line(buyerData);
-	});
 
   </script>
 
