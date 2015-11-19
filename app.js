@@ -240,7 +240,7 @@ app.get('/withings/oauth_callback', function (req, res) {
 
 // Display today's steps for a user
 app.get('/withings/activity/steps', function (req, res) {
-	res.sendFile('weight.html');
+	
     if (!gUserID)
       gUserID =req.session.gUserID;
 
@@ -268,7 +268,7 @@ app.get('/withings/activity/steps', function (req, res) {
 
 // Display today's steps for a user
 app.get('/withings/activity/weight', function (req, res) {
-
+	res.sendFile('weight.html');
 
     if (!gUserID)
         if (req.session) gUserID =req.session.gUserID;
@@ -321,7 +321,7 @@ app.get('/withings/activity/weight', function (req, res) {
         for (var i = 0; i < data.length; i++ ) {
           var point = data[i];
 		  var result = JSON.stringify(point.measures[0].value*0.01)
-          html += "<li>"+JSON.stringify(point.measures[2].value*0.01)+"</li>";
+          html += "<li>"+JSON.stringify(point.measures[0].value*0.01)+"</li>";
         }
         html += "</ul>";
 
