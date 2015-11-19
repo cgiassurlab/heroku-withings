@@ -268,7 +268,7 @@ app.get('/withings/activity/steps', function (req, res) {
 
 // Display today's steps for a user
 app.get('/withings/activity/weight', function (req, res) {
-	$("#MyEdit").html("My new text!");
+	
 	res.sendFile(path.join(__dirname + '/weight.html'));
 	
 
