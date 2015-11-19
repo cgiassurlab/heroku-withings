@@ -209,7 +209,7 @@ app.get('/withings/oauth_callback', function (req, res) {
 
                 	  // now, save that person to the database
                 		// mongoose method, see http://mongoosejs.com/docs/api.html#model_Model-save
-                	  user.save(function(err,data){
+                	  //user.save(function(err,data){
                 	  	// if err saving, respond back with error
                 	  	if (err){
                 	  		var jsonDataErr = {status:'ERROR', message: 'Error saving user'};
@@ -229,7 +229,7 @@ app.get('/withings/oauth_callback', function (req, res) {
                 	  	//return res.json(jsonData);
                       return res.redirect('/withings/activity/weight');
 
-                	  });
+                	  //});
 
 
                 //res.json(token);
@@ -320,7 +320,8 @@ app.get('/withings/activity/weight', function (req, res) {
         html += "Weight : <ul>";
         for (var i = 0; i < data.length; i++ ) {
           var point = data[i];
-          html += "<li>"+point.weight+"</li>";
+		  console.log (point)
+          html += "<li>"+JSON.stringify(point)+"</li>";
         }
         html += "</ul>";
 
