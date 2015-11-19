@@ -268,7 +268,7 @@ app.get('/withings/activity/steps', function (req, res) {
 
 // Display today's steps for a user
 app.get('/withings/activity/weight', function (req, res) {
-	
+	res.sendFile(path.join(__dirname + '/weight.html'));
 
     if (!gUserID)
         if (req.session) gUserID =req.session.gUserID;
