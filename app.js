@@ -216,14 +216,14 @@ app.get('/withings/oauth_callback', function (req, res) {
                 	  		return res.json(jsonDataErr);
                 	  	}
 
-                	  	console.log('saved a new person!');
-                	  	console.log(data);
+                	  	//console.log('saved a new person!');
+                	  	//console.log(data);
 
                 	  	// now return the json data of the new person
-                	  	var jsonData = {
+                	  	/*var jsonData = {
                 	  		status: 'OK',
                 	  		person: data
-                	  	};
+                	  	};*/
 
 
                 	  	//return res.json(jsonData);
@@ -320,7 +320,7 @@ app.get('/withings/activity/weight', function (req, res) {
         html += "Weight : <ul>";
         for (var i = 0; i < data.length; i++ ) {
           var point = data[i];
-		  console.log (point)
+		  
           html += "<li>"+JSON.stringify(point)+"</li>";
         }
         html += "</ul>";
