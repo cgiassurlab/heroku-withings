@@ -268,7 +268,7 @@ app.get('/withings/activity/steps', function (req, res) {
 
 // Display today's steps for a user
 app.get('/withings/activity/weight', function (req, res) {
-	$('.results').html('Hello World!');
+	//$('.results').html('Hello World!');
 	res.sendFile(path.join(__dirname + '/weight.html'));
 	
 
@@ -322,7 +322,7 @@ app.get('/withings/activity/weight', function (req, res) {
         html += "Weight : <ul>";
         for (var i = 0; i < data.length; i++ ) {
           var point = data[i];
-		  var result = JSON.stringify(point.measures[0].value*0.01)
+		 
           html += "<li>"+JSON.stringify(point.measures[0].value*0.01)+"</li>";
         }
 		
