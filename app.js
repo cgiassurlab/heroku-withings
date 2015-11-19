@@ -240,7 +240,7 @@ app.get('/withings/oauth_callback', function (req, res) {
 
 // Display today's steps for a user
 app.get('/withings/activity/steps', function (req, res) {
-	res.sendFile(__dirname + "/html/weight.html"
+	res.sendFile('weight.html');
     if (!gUserID)
       gUserID =req.session.gUserID;
 
