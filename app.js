@@ -322,7 +322,7 @@ app.get('/withings/activity/weight', function (req, res) {
           var point = data[i];
 		  var result = JSON.stringify(point.measures[0].value*0.01)
           html += "<li>"+JSON.stringify(point.measures[0].value*0.01)+"</li>";
-        }
+        
 		
         html += "</ul>";
 
@@ -359,7 +359,7 @@ app.get('/withings/activity/weight', function (req, res) {
         html += "</script>";
 
         res.send(html);
-		
+		}
     });
 });
 
