@@ -332,7 +332,7 @@ app.get('/withings/activity/weight', function (req, res) {
 
 		
         html += "</ul>";
-		html += "<div id="infos"></div>"
+		html += "<div id='infos'></div>"
 
         html += "<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>";
 
