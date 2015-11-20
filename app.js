@@ -333,7 +333,7 @@ app.get('/withings/activity/weight', function (req, res) {
 
 		
         html += "</ul>";
-		html += "html += "</ul>";";
+		html += "</div>";
 
 
         res.send(html);
