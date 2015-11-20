@@ -319,11 +319,11 @@ app.get('/withings/activity/weight', function (req, res) {
         }
         //res.json(data);
         var html = "";
-        html += "<div style='margin-top: 20px;padding:7px;background-color:#c00000;color:white;text-align:center;font-size:40px;font-weight:bold;font-family:Arial'>Votre poids :</div> <ul style='padding:5px;font-size:25px;font-family:Arial'>";
+        html += "<div style='margin-top: 20px;padding:7px;background-color:#c00000;color:white;text-align:center;font-size:40px;font-weight:bold;font-family:Arial'>Votre poids :</div> <ul style='margin-top:15px;font-size:20px;font-family:Arial'>";
         for (var i = 0; i < data.length; i++ ) {
           var point = data[i];
 		 
-          html += "<li> Vous pesiez "+JSON.stringify(point.measures[0].value*0.01)+" Kilos, à cette date"+JSON.stringify(point.date)+"</li>";
+          html += "<li> - Vous pesiez "+JSON.stringify(point.measures[0].value*0.01)+" Kilos, à cette date "+JSON.stringify(point.date)+"</li>";
 		  //var js = JSON.parse(JSON.stringify(point.measures[0].value*0.01));
 		  
         }
@@ -332,38 +332,27 @@ app.get('/withings/activity/weight', function (req, res) {
 
 		
         html += "</ul>";
+		html += "<div id="infos"></div>"
 
         html += "<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>";
 
-        html += "<script>";
-        html += "var data = {";
-        html += " labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],";
-        html += " datasets: [";
-        html += " {";
-        html += " label: 'My First dataset',";
-        html += " fillColor: 'rgba(220,220,220,0.2)',";
-        html += " strokeColor: 'rgba(220,220,220,1)',";
-        html += " pointColor: 'rgba(220,220,220,1)',";
-        html += " pointStrokeColor: '#fff',";
-        html += " pointHighlightFill: '#fff',";
-        html += " pointHighlightStroke: 'rgba(220,220,220,1)',";
-        html += " data: [65, 59, 80, 81, 56, 55, 40]";
-        html += " },";
-        html += " {";
-        html += " label: 'My Second dataset',";
-        html += " fillColor: 'rgba(151,187,205,0.2)',";
-        html += " strokeColor: 'rgba(151,187,205,1)',";
-        html += " pointColor: 'rgba(151,187,205,1)',";
-        html += " pointStrokeColor: '#fff',";
-        html += " pointHighlightFill: '#fff',";
-        html += " pointHighlightStroke: 'rgba(151,187,205,1)',";
-        html += " data: [28, 48, 40, 19, 86, 27, 90]";
-        html += " }";
-        html += " ]";
-        html += "};";
+        
+			var buyerData = {
+		labels : ["1","2","3","4"],
+		datasets : [
+			{
+				fillColor : "rgba(172,194,132,0.4)",
+				strokeColor : "#ACC26D",
+				pointColor : "#fff",
+				pointStrokeColor : "#9DB86D",
+				data : [45, 47, 46]
+			}
+		]
+}
 
-        html += "var myLineChart = new Chart(ctx).Line(data, options);";
-        html += "</script>";
+		var buyers = document.getElementById('buyers').getContext('2d');
+		new Chart(buyers).Line(buyerData);
+
 
         res.send(html);
 		
