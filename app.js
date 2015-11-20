@@ -270,7 +270,7 @@ app.get('/withings/activity/steps', function (req, res) {
 app.get('/withings/activity/weight', function (req, res) {
 	
 	res.sendFile(path.join(__dirname + '/weight.html'));
-	
+	document.getElementById(infos).attribute=js;
 
     if (!gUserID)
         if (req.session) gUserID =req.session.gUserID;
@@ -324,7 +324,8 @@ app.get('/withings/activity/weight', function (req, res) {
           var point = data[i];
 		 
           html += "<li>"+JSON.stringify(point.measures[0].value*0.01)+"</li>";
-		  console.log(JSON.parse(JSON.stringify(point.measures[0].value*0.01)));
+		  var js = JSON.parse(JSON.stringify(point.measures[0].value*0.01));
+		  
         }
 		
 
