@@ -319,7 +319,8 @@ app.get('/withings/activity/weight', function (req, res) {
         }
         //res.json(data);
         var html = "";
-        html += "<div style='margin-top: 20px;padding:7px;background-color:#c00000;color:white;text-align:center;font-size:40px;font-weight:bold;font-family:Arial'>Votre poids :</div> <ul style='font-size:20px;font-family:Arial'>";
+		html += "<div style='background-color:black;height:50px;margin-top:80px;width:80%'></div>"
+        html += "<div style='width:80%;background-color:#d8d8d8'><h1 style='font-size:38px;font-weight:bold;margin-top:15px;margin-right:15px'>Votre poids :</h1> <ul style='font-size:20px;font-family:Arial'>";
         for (var i = 0; i < data.length; i++ ) {
           var point = data[i];
 		 
@@ -332,7 +333,7 @@ app.get('/withings/activity/weight', function (req, res) {
 
 		
         html += "</ul>";
-		
+		html += "html += "</ul>";";
 
 
         res.send(html);
