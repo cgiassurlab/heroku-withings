@@ -324,6 +324,7 @@ app.get('/withings/activity/weight', function (req, res) {
           var point = data[i];
 		 
           html += "<li>"+JSON.stringify(point.measures[0].value*0.01)+"</li>";
+		  console.log(JSON.parse(JSON.stringify(point.measures[0].value*0.01)));
         }
 		
 
