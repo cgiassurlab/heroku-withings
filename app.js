@@ -332,26 +332,7 @@ app.get('/withings/activity/weight', function (req, res) {
 
 		
         html += "</ul>";
-		html += "<div id='infos'></div>"
-
-        html += "<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>";
-
-        
-			var buyerData = {
-		labels : ["1","2","3","4"],
-		datasets : [
-			{
-				fillColor : "rgba(172,194,132,0.4)",
-				strokeColor : "#ACC26D",
-				pointColor : "#fff",
-				pointStrokeColor : "#9DB86D",
-				data : [45, 47, 46]
-			}
-		]
-}
-
-		var buyers = document.getElementById('buyers').getContext('2d');
-		new Chart(buyers).Line(buyerData);
+		
 
 
         res.send(html);
