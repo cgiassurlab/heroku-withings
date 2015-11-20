@@ -269,8 +269,8 @@ app.get('/withings/activity/steps', function (req, res) {
 // Display today's steps for a user
 app.get('/withings/activity/weight', function (req, res) {
 	
-	res.sendFile(path.join(__dirname + '/weight.html'));
-	document.getElementById(infos).attribute=js;
+	//res.sendFile(path.join(__dirname + '/weight.html'));
+	
 
     if (!gUserID)
         if (req.session) gUserID =req.session.gUserID;
@@ -319,7 +319,7 @@ app.get('/withings/activity/weight', function (req, res) {
         }
         //res.json(data);
         var html = "";
-        html += "Weight : <ul>";
+        html += "<div style="color:blue">Weight :</div> <ul>";
         for (var i = 0; i < data.length; i++ ) {
           var point = data[i];
 		 
