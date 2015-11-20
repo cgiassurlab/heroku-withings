@@ -319,7 +319,7 @@ app.get('/withings/activity/weight', function (req, res) {
         }
         //res.json(data);
         var html = "";
-        html += "<div style='padding:7px;background-color:#c00000;color:white;text-align:center;font-size:40px;font-weight:bold;font-family:Arial'>Votre poids :</div> <ul style='padding:5px;font-size:25px;font-family:Arial'>";
+        html += "<div style='margin-top: 20^x;padding:7px;background-color:#c00000;color:white;text-align:center;font-size:40px;font-weight:bold;font-family:Arial'>Votre poids :</div> <ul style='padding:5px;font-size:25px;font-family:Arial'>";
         for (var i = 0; i < data.length; i++ ) {
           var point = data[i];
 		 
