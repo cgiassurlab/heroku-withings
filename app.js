@@ -9,7 +9,7 @@ var path = require('path');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-
+var jade = require ('jade');
 //var config = require('config');
 //var config = require('load-env');
 var dotenv = require('dotenv');
