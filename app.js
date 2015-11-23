@@ -45,7 +45,7 @@ app.use(session({secret: 'bigSecret'}));
 
 
 app.set('views', __dirname + '/views');
-app.set('view engine', 'jade')
+
 //app.use(express.static(path.join(__dirname, 'public')));
 
 
