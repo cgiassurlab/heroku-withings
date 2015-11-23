@@ -9,7 +9,7 @@ var path = require('path');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-var jade = require ('jade');
+
 //var config = require('config');
 //var config = require('load-env');
 var dotenv = require('dotenv');
@@ -45,6 +45,7 @@ app.use(session({secret: 'bigSecret'}));
 
 
 app.set('views', __dirname + '/views');
+app.set('view engine', 'jade')
 //app.use(express.static(path.join(__dirname, 'public')));
 
 
