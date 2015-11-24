@@ -10,9 +10,9 @@
     "express": "latest",
     "express-session": "latest",
     "geocoder": "latest",
+    "jade": "^1.11.0",
     "method-override": "latest",
-    "moment"
-    : "latest",
+    "moment": "latest",
     "mongoose": "latest",
     "request": "latest",
     "withings-lib": "latest"
