@@ -46,7 +46,7 @@ app.use(session({secret: 'bigSecret'}));
 
 app.set('views', __dirname + '/views');
 //app.engine('.html', require('jade').__express);
-
+app.set('view engine', 'jade');
 //app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -270,7 +270,7 @@ app.get('/withings/activity/steps', function (req, res) {
 
 // Display today's steps for a user
 app.get('/withings/activity/weight', function (req, res) {
-	//res.render('view.jade', params, function (err, html) {
+	res.render('view', { });
 		
 	
 	//res.sendFile(path.join(__dirname + '/weight.html'));
