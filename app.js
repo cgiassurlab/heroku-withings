@@ -328,13 +328,13 @@ app.get('/withings/activity/weight', function (req, res) {
         for (var i = 0; i < data.length; i++ ) {
           var point = data[i];
 		  var plus = point.measures[0].value*0.01
-		  var result = JSON.stringify(plus);
+		  
 		  
           //html += "<li style='margin-bottom:10px'>"+JSON.stringify(point.measures[0].value*0.01)+" Kilos</li>";
 		 
 		  
         }
-		res.render('view', { view: JSON.stringify(point.measures[0].value*0.01)});
+		
 
 
 		
@@ -345,6 +345,7 @@ app.get('/withings/activity/weight', function (req, res) {
         //res.send(html);
 	//});
     });
+	res.render('view', { view: JSON.stringify(point.measures[0].value*0.01)});
 });
 
 
