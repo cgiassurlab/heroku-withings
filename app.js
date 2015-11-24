@@ -343,7 +343,7 @@ app.get('/withings/activity/weight', function (req, res) {
 
 	
         res.send(html);
-
+	});
     });
 });
 
