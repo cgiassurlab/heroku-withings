@@ -272,7 +272,7 @@ app.get('/withings/activity/steps', function (req, res) {
 app.get('/withings/activity/weight', function (req, res) {
 	//res.render('view.jade', params, function (err, html) {
 		
-	})
+	
 	//res.sendFile(path.join(__dirname + '/weight.html'));
 	
 
