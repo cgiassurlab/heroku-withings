@@ -322,15 +322,15 @@ app.get('/withings/activity/weight', function (req, res) {
             res.send(err);
         }
         //res.json(data);
-        var html = "";
-		html += "<div style='background-color:#4C4C4C;height:50px;margin-top:150px;margin-left:5%;width:90%'></div>"
-        html += "<div style='width:90%;background-color:#d8d8d8;margin-left:5%;margin-top:20px;height:300px'><h1 style='padding:20px;font-family:Leelawadee;font-size:45px;margin-top:25px;margin-left:20px'>Votre poids :</h1> <ul style='font-size:20px;font-family:Arial;margin-left: 10px'>";
+        //var html = "";
+		//html += "<div style='background-color:#4C4C4C;height:50px;margin-top:150px;margin-left:5%;width:90%'></div>"
+        //html += "<div style='width:90%;background-color:#d8d8d8;margin-left:5%;margin-top:20px;height:300px'><h1 style='padding:20px;font-family:Leelawadee;font-size:45px;margin-top:25px;margin-left:20px'>Votre poids :</h1> <ul style='font-size:20px;font-family:Arial;margin-left: 10px'>";
         for (var i = 0; i < data.length; i++ ) {
           var point = data[i];
 		  var plus = point.measures[0].value*0.01
 		  var result = JSON.stringify(plus);
-			res.render('view', { view: JSON.stringify(plus)});
-          html += "<li style='margin-bottom:10px'>"+JSON.stringify(point.measures[0].value*0.01)+" Kilos</li>";
+		  res.render('view', { view: JSON.stringify(plus)});
+          //html += "<li style='margin-bottom:10px'>"+JSON.stringify(point.measures[0].value*0.01)+" Kilos</li>";
 		 
 		  
         }
@@ -338,11 +338,11 @@ app.get('/withings/activity/weight', function (req, res) {
 
 
 		
-		html += "</ul>";
-		html += "</div>";
+		//html += "</ul>";
+		//html += "</div>";
 
 	
-        res.send(html);
+        //res.send(html);
 	//});
     });
 });
