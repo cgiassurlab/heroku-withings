@@ -3,7 +3,8 @@ doctype html
 html(lang="fr")
   head
     title My withings
-
+	
+  extends layout
   body
     each view in views
-     p #{views}
+     p= view
