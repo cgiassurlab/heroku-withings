@@ -280,8 +280,8 @@ app.get('/withings/activity/weight', function (req, res) {
         if (req.session) gUserID =req.session.gUserID;
 
     if (!req.session || !req.session.oauth || !gUserID) {
-      //res.send("Please relog to your app.");
-      //return;
+      res.send("Please relog to your app.");
+      return;
     }
 
     /*
