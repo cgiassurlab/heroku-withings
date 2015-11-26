@@ -331,7 +331,7 @@ app.get('/withings/activity/weight', function (req, res) {
 		  var views = point.measures[0].value*0.01
 		  res.render('view', {views: JSON.stringify(point.measures[0].value*0.01)});
 		  
-          //html += "<li style='margin-bottom:10px'>"+JSON.stringify(point.measures[0].value*0.01)+" Kilos</li>";
+          //html += "<li style='margin-bottom:10px'>"+JSON.stringify(point.measures[0].value*0.01)+" Kilos</li>"; 
 		 
 		  
         }
