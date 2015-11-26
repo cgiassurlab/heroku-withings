@@ -319,7 +319,7 @@ app.get('/withings/activity/weight', function (req, res) {
 
     client.getWeightMeasures(new Date(2013, 5, 1), new Date(),function(err, data) {
         if (err) {
-            //res.send(err);
+            res.send(err);
         }
         //res.json(data);
         //var html = "";
