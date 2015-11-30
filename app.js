@@ -269,12 +269,8 @@ app.get('/withings/activity/steps', function (req, res) {
 
 
 // Display today's steps for a user
-app.get('/withings/activity/weight', express.timeout(6000), express.bodyParser(), function (req, res) {
-	if (res._header) return; // someone already responded
-	var timedout = false;
-	req.on('timeout',function(){
-		timedout = true;
-	});
+app.get('/withings/activity/weight', function (req, res) {
+	
 		
 	
 	//res.sendFile(path.join(__dirname + '/weight.html'));
@@ -333,7 +329,7 @@ app.get('/withings/activity/weight', express.timeout(6000), express.bodyParser()
         for (var i = 0; i < data.length; i++ ) {
           var point = data[i];
 		  var views = point.measures[0].value*0.01
-		  res.render('view', {view: JSON.stringify(views)});
+		  res.render('view', {views: JSON.stringify(views)});
 		  
           //html += "<li style='margin-bottom:10px'>"+JSON.stringify(point.measures[0].value*0.01)+" Kilos</li>"; 
 		 
