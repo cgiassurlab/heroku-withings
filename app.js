@@ -269,8 +269,12 @@ app.get('/withings/activity/steps', function (req, res) {
 
 
 // Display today's steps for a user
-app.get('/withings/activity/weight', function (req, res) {
-	
+app.get('/withings/activity/weight', express.timeout(5000), express.bodyParser(), function (req, res) {
+	if (res._header) return; // someone already responded
+	var timedout = false;
+	req.on('timeout',function(){
+		timedout = true;
+	});
 		
 	
 	//res.sendFile(path.join(__dirname + '/weight.html'));
