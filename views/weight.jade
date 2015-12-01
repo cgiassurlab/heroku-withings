@@ -7,12 +7,9 @@ html(lang="fr")
     title My withings
 
   body
-    each weight in weights
-      li #{weight}
-      
-	  canvas#line(height="350" width="600")
-	  script.
-        var lineChartData = {
+    canvas#line(height="350" width="600")
+	script.
+      var lineChartData = {
 	    labels : ["January","February","March","April","May","June","July"],
 		  datasets : [
 		    {
@@ -23,5 +20,5 @@ html(lang="fr")
 			  data : [65,59,90,81,56,55,40]
 			},
 		  ]
-		}
-		var myLine = new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
+	  }
+	  var myLine = new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
