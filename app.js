@@ -326,17 +326,19 @@ app.get('/withings/activity/weight', function (req, res) {
 		//html += "<div style='background-color:#4C4C4C;height:50px;margin-top:150px;margin-left:5%;width:90%'></div>"
         //html += "<div style='width:90%;background-color:#d8d8d8;margin-left:5%;margin-top:20px;height:300px'><h1 style='padding:20px;font-family:Leelawadee;font-size:45px;margin-top:25px;margin-left:20px'>Votre poids :</h1> <ul style='font-size:20px;font-family:Arial;margin-left: 10px'>";
 		
+      // construction du tableau des poids
+        var weights = [];
         for (var i = 0; i < data.length; i++ ) {
           var point = data[i];
-		  var views = point.measures[0].value*0.01
-		  res.render('weight', {views: JSON.stringify(views)});
+		      weights.push(point.measures[0].value*0.01);
 		  
           //html += "<li style='margin-bottom:10px'>"+JSON.stringify(point.measures[0].value*0.01)+" Kilos</li>"; 
 		// erreur quand res.render actif -> apparement trop de res. ce qui correspondrais à trop de réponses 
 		  
         }
 		
-
+        // transmission du tableau et affichage 
+      res.render('weight', {weights: JSON.stringify(weights)});
 
 		
 		//html += "</ul>";
