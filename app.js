@@ -338,7 +338,8 @@ app.get('/withings/activity/weight', function (req, res) {
         }
 		
         // transmission du tableau et affichage 
-      res.render('weight', {weights: JSON.stringify(weights)});
+      //res.render('weight', {weights: JSON.stringify(weights)});
+      res.render('weight', {weights: weights});
 
 		
 		//html += "</ul>";
