@@ -1,15 +1,22 @@
-
 doctype html
-html(lang="fr")
+html(lang='en')
   head
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js")
-    script.
-    title My withings
-
   body
-  canvas#line(height="350" width="600")
-  script.
-    var lineChartData = {
-       labels : ["January","February","March","April","May","June","July"], datasets : [{fillColor : "rgba(220,220,220,0.5)",strokeColor : "rgba(220,220,220,1)",pointColor : "rgba(220,220,220,1)",pointStrokeColor : "#fff", data : [65,59,90,81,56,55,40]}]			
-	 }
-	  var myLine = new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
+    canvas#line(width='400', height='400')
+    script.
+      var data = {
+      labels: ["January", "February", "March", "April", "May", "June", "July"],
+      datasets: [
+      {
+      label: "My First dataset",
+      fillColor: "rgba(220,220,220,0.2)",
+      strokeColor: "rgba(220,220,220,1)",
+      pointColor: "rgba(220,220,220,1)",
+      pointStrokeColor: "#fff",
+      pointHighlightFill: "#fff",
+      pointHighlightStroke: "rgba(220,220,220,1)",
+      data: [10, 12]
+      }
+      ]
+      };
+      var myLine = new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
