@@ -123,6 +123,7 @@ app.get('/withings/activity/weight', function (req, res) {
     var client = new Withings(options);
 
     console.log("req 2 : "+gUserID);
+    console.log("passe bien ici 2");
 
     client.getWeightMeasures(new Date(2013, 5, 1), new Date(),function(err, data) {
         if (err) {
