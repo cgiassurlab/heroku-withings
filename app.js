@@ -370,13 +370,6 @@ app.use(function(req, res, next){
 });
 
 
-
-// create NodeJS HTTP server using 'app'
-http.createServer(app).listen(app.get('port'), function(){
-  console.log("Express server listening on port " + app.get('port'));
-});
-
-
 app.get('/withings/api/myday', function (req, res) {
   
     if (!gUserID)
@@ -391,3 +384,10 @@ app.get('/withings/api/myday', function (req, res) {
 
     res.json(data);
 });
+
+
+// create NodeJS HTTP server using 'app'
+http.createServer(app).listen(app.get('port'), function(){
+  console.log("Express server listening on port " + app.get('port'));
+});
+
