@@ -357,19 +357,6 @@ app.get('/withings/activity/weight', function (req, res) {
 });
 
 
-// if route not found, respond with 404
-app.use(function(req, res, next){
-
-	var jsonData = {
-		status: 'ERROR',
-		message: 'Sorry, we cannot find the requested URI'
-	};
-	// set status as 404 and respond with data
-  res.status(404).send(jsonData);
-
-});
-
-
 app.get('/withings/api/myday', function (req, res) {
   
     if (!gUserID)
@@ -383,6 +370,19 @@ app.get('/withings/api/myday', function (req, res) {
 
 
     res.json(data);
+});
+
+
+// if route not found, respond with 404
+app.use(function(req, res, next){
+
+	var jsonData = {
+		status: 'ERROR',
+		message: 'Sorry, we cannot find the requested URI'
+	};
+	// set status as 404 and respond with data
+  res.status(404).send(jsonData);
+
 });
 
 
