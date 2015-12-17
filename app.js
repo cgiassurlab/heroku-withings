@@ -384,7 +384,7 @@ app.get('/withings/api/myday', function (req, res) {
 
     console.log("UserId : "+gUserID);
 
-    var data = "{
+    var data = {
    status: 0,
    body: {
        series: {
@@ -395,6 +395,6 @@ app.get('/withings/api/myday', function (req, res) {
            }
        }
    }
-}";
+}
     res.json(data);
 });
