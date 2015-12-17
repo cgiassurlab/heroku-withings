@@ -395,6 +395,6 @@ app.get('/withings/api/myday', function (req, res) {
            }
        }
    }
-}"
+}";
     res.json(data);
 });
