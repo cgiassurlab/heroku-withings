@@ -21,7 +21,7 @@ var personSchema = new Schema({
 	dateAdded : { type: Date, default: Date.now },
 });
 
-var profil = new Profil({
+var profilSchema = new Schema({
 	id: String,
 	name: String,
 	//inactivityTime : 
@@ -30,5 +30,6 @@ var profil = new Profil({
 // export 'Person' model so we can interact with it in other files
 module.exports = {
 						user : mongoose.model('User',userSchema),
-						person : mongoose.model('Person',personSchema)
+						person : mongoose.model('Person',personSchema),
+						profil : mongoose.model('Profil',profilSchema)
 			};
