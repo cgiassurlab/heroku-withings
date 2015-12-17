@@ -21,6 +21,12 @@ var personSchema = new Schema({
 	dateAdded : { type: Date, default: Date.now },
 });
 
+var profil = new Profil({
+	id: String,
+	name: String,
+	//inactivityTime : 
+});
+
 // export 'Person' model so we can interact with it in other files
 module.exports = {
 						user : mongoose.model('User',userSchema),

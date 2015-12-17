@@ -23,6 +23,7 @@ var session = require('express-session');
 var Models = require("./models/model.js");
 var User = Models.user;
 var Person = Models.person;
+var Profil = Models.profil;
 
 // the ExpressJS App
 var app = express();
@@ -331,7 +332,7 @@ app.get('/withings/activity/weight', function (req, res) {
         var dates = [];
         for (var i = 0; i < data.length; i++ ) {
           var point = data[i];
-		      weights.push(point.measures[0].value*0.02);
+		      weights.push(point.measures[0].value*0.01);
           dates.push(i);
 		  
           //html += "<li style='margin-bottom:10px'>"+JSON.stringify(point.measures[0].value*0.01)+" Kilos</li>"; 
@@ -372,4 +373,15 @@ app.use(function(req, res, next){
 // create NodeJS HTTP server using 'app'
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
+});
+
+
+app.get('/api/myDay', function (req, res) {
+  
+    if (!gUserID)
+      gUserID =req.session.gUserID;
+
+    console.log("UserId : "+gUserID);
+
+    //res.json(data);
 });
