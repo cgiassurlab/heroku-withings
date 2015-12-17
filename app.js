@@ -364,7 +364,7 @@ app.get('/withings/api/myday', function (req, res) {
 
     console.log("UserId : "+gUserID);
 
-    var data = {"test":"sdsdsdsd"};
+    var data = {"test":0};
 
 
 
