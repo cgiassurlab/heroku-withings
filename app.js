@@ -364,21 +364,7 @@ app.get('/withings/api/myday', function (req, res) {
 
     console.log("UserId : "+gUserID);
 
-    var data = {
-   "status": 0,
-   "body": {
-       "series": 
-       {
-           {
-             "1368141046": 
-             {
-                 "calories": 0,
-                 "duration": 611
-             }
-           }
-       }
-  }
-};
+    var data = {"status": 0 };
 
 
 
