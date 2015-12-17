@@ -366,7 +366,7 @@ app.get('/withings/api/myday', function (req, res) {
 
     var data = {
    "status": 0,
-   "body": "toto";
+   "body": "toto"
 };
 
 
