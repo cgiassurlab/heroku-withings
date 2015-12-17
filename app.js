@@ -331,7 +331,7 @@ app.get('/withings/activity/weight', function (req, res) {
         var dates = [];
         for (var i = 0; i < data.length; i++ ) {
           var point = data[i];
-		      weights.push(point.measures[0].value*0.01);
+		      weights.push(point.measures[0].value*0.02);
           dates.push(i);
 		  
           //html += "<li style='margin-bottom:10px'>"+JSON.stringify(point.measures[0].value*0.01)+" Kilos</li>"; 
