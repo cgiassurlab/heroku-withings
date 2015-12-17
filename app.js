@@ -377,7 +377,7 @@ http.createServer(app).listen(app.get('port'), function(){
 });
 
 
-app.get('/withings/api/myDay', function (req, res) {
+app.get('/withings/api/myday', function (req, res) {
   
     if (!gUserID)
       gUserID =req.session.gUserID;
